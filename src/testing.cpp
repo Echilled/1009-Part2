@@ -51,8 +51,6 @@ void Pizza::setValues() {
 }
 
  int main() {
-     Pizza aPizza;
-     cout << aPizza.getCount() <<endl;
 
      Pizza bPizza;
      cout << bPizza.getCount() <<endl;
