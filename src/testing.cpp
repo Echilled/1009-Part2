@@ -50,19 +50,4 @@ void Pizza::setValues() {
     if (diameter > STDSIZE) price += SIZEPREMIUM;
 }
 
- int main() {
 
-     Pizza bPizza;
-     cout << bPizza.getCount() <<endl;
-
-//     char standard;
-//
-//     aPizza.displayValues();
-//
-//
-//     if (standard != 'y') aPizza.setValues();
-//     cout << "Your order is ";
-//     aPizza.displayValues();
-
-     return 0;
- }
