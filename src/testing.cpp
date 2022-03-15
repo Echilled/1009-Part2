@@ -2,46 +2,52 @@
 
 using namespace std;
 
-class polygon{
-
-protected:
-	int width, height;
-
-public:
-	void setValues(int width, int height){
-		this->width = width;
-		this->height = height;
-	}
-
+class Pizza {
+	static int count;
+    private:
+        string topping;
+        int diameter;
+        double price;
+        const static string STDTOP;
+        const static int STDSIZE;
+        const static double STDPRICE;
+    public:
+        Pizza(const string = STDTOP, const int = STDSIZE, const double = STDPRICE);
+        void setValues();
+        void displayValues();
+        int getCount();
 };
 
-class output1{
-public:
-	void output(int i);
-};
+const string Pizza::STDTOP = "cheese";
+const int Pizza::STDSIZE = 12;
+const double Pizza::STDPRICE = 8.99;
 
-
-void output1::output(int i){
-	cout << i << endl;
+Pizza::Pizza (const string top, const int size, const double price) {
+    topping = top;
+    diameter = size;
+    this -> price = price;
 }
 
-class rectangle: public polygon, public output1{
+void Pizza::displayValues() {
+    cout << "a " << diameter << " inch " << topping << " pizza. Price $" << price << endl;
+}
 
-public:
-	int area(){;
-	return width*height;
-	}
-};
-
-int main()
-{
-
-	rectangle rec1;
-	rec1.setValues(4, 5);
-	rec1.output(rec1.area());
+int Pizza::getCount() {
+    return this->count;
+}
 
 
-   return 0;
+int Pizza::count = 2;
+
+void Pizza::setValues() {
+    const double TOPPINGPREMIUM = 1.00;
+    const double SIZEPREMIUM = 1.50;
+    cout << "Enter topping ";
+    cin >> topping;
+    if (topping != STDTOP) price = STDPRICE + TOPPINGPREMIUM;
+    cout << "Enter size ";
+    cin >> diameter;
+    if (diameter > STDSIZE) price += SIZEPREMIUM;
 }
 
 
