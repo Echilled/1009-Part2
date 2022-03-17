@@ -1,4 +1,5 @@
 #include "Game_Manager.h"
+#include <string>
 #include <iostream>
 int main() {
 	int PH;

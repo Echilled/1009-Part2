@@ -1,3 +1,4 @@
+#include <string>
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,7 +19,7 @@ void Player::set_points(int points) {
 	this->points = points;
 }
 string Player::get_name() {
-	cout << "AAAAAAA   " << this->name << "   AAAAAAA"; //test
+	//cout << "AAAAAAA   " << this->name << "   AAAAAAA"; //test
 	return this->name;
 }
 void Player::set_name(string name) {
