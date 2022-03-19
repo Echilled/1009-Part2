@@ -14,7 +14,7 @@ class player;
 class scoreboard{
 
 public:
-	scoreboard(player p){
+	scoreboard(player){
 
 	}
 

@@ -8,6 +8,7 @@ private:
 	int points;
 	string name;
 	int previous_decision;
+	friend class scoreboard;
 public:
 	Player(string name);
 
@@ -21,5 +22,6 @@ public:
 	void set_name(string name);
 
 	virtual int make_decision() = 0; //depends on the class inheriting this class
+
 	virtual ~Player() = 0;
 };
