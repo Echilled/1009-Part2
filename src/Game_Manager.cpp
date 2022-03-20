@@ -189,6 +189,7 @@ void Game_Manager::Game() {
 				}
 			}
 		}
+		scoreboard.displayScoreMap();
 
 	}
 }
@@ -200,7 +201,7 @@ void Game_Manager::Display_Results() {
 		//sprintf(tempstring, "Player name: %s, Player score: %d", this->players[i]->get_name(), this->players[i]->get_points());
 		cout << "Player name: " << this->players[i]->get_name() <<", Player score: " << this->players[i]->get_points() << endl;
 		//cout << "Player name: " << this->players[i].get_name() <<", Player score: " << this->players[i].get_points();
-		scoreboard.displayScoreMap();
+
 	}
 
 }
