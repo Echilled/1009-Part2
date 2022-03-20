@@ -22,18 +22,15 @@ void scoreboard::initScoreMap(string playername, int player_points = 0){ // Init
 
 
 void scoreboard::UpdateScore(string playername, int player_points){
-	map<string, int>::iterator itr;
-	 for (itr = this->score_map.begin(); itr != this->score_map.end(); ++itr){
-		 if (itr->first == playername){
-			 itr->second = player_points;
-		 }
-	 }
+	std::map<string, int>::iterator it = this->score_map.find(playername);
+	if (it != this->score_map.end())
+	    it->second = player_points;
 }
 
 void scoreboard::displayScoreMap(){
-	map<string, int>::iterator itr;
+	map<string, int>::iterator itr1;
 	cout << "Score map:" <<endl;
-	 for (itr = this->score_map.begin(); itr != this->score_map.end(); ++itr) {
-	        cout << '\t' << itr->first << '\t' << itr->second << '\n';
+	 for (itr1 = this->score_map.begin(); itr1 != this->score_map.end(); ++itr1) {
+	        cout << '\t' << itr1->first << '\t' << itr1->second << '\n';
 	    }
 }

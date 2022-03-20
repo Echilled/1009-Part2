@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
+
 using namespace std;
 
 class Player {
@@ -8,8 +9,10 @@ private:
 	int points;
 	string name;
 	int previous_decision;
-	friend class scoreboard;
+	friend class Game_Manager;
+
 public:
+
 	Player(string name);
 
 	int get_points();

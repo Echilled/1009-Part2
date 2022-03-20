@@ -174,24 +174,24 @@ void Game_Manager::Game() {
 
 	// Intialising the scoreboard
 	for (int i = 0; i < this->number_of_players; i++) {
-		scoreboard.initScoreMap(this->players[i]->get_name(), 0);
+		scoreboard.initScoreMap(this->players[i]->name, 0);
 	}
+	scoreboard.displayScoreMap();
 
 
 	for (int round = 0; round < this->max_rounds; round++) {
 		cout << "round: " << round << endl;
 		for (int i = 0; i < this->number_of_players; i++) {
 			for (int j = i; j < this->number_of_players; j++) {
-				scoreboard.UpdateScore(this->players[j]->get_name(), this->players[j]->get_points());
 				if (i != j) {
 					this->Interact(i,j);
-
 				}
 			}
+			scoreboard.UpdateScore(this->players[i]->name, this->players[i]->points); // Accessing private variables as game manager is a friend
 		}
-		scoreboard.displayScoreMap();
-
 	}
+	scoreboard.displayScoreMap();
+
 }
 
 void Game_Manager::Display_Results() {
