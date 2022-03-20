@@ -9,15 +9,11 @@
 #ifndef SCOREBOARD_H_
 #define SCOREBOARD_H_
 
-class player;
 
 class scoreboard{
 
 public:
-	scoreboard(player){
-
-	}
-
+	scoreboard();
 
 };
 
