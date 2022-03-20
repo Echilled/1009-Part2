@@ -155,6 +155,7 @@ void Game_Manager::Game() {
 			}
 			cout << "player chosen: " << (this->players)[i]->get_name() << "\n\n\n";
 			/**/
+
 		 //------------------------------------------
 		 //this->players[i] = player_objects[rand()%5];
 		 //this->choose_random_player_type((this->players)[i]);
@@ -168,30 +169,27 @@ void Game_Manager::Game() {
 		 Pscore = this->players[i]->get_points();
 		 //Pscore = this->players[i].get_points();
 		 cout << "Player: " << Pname << "current score: " << Pscore << "...\n";
+
 	}
 
-/*
+	// Intialising the scoreboard
 	for (int i = 0; i < this->number_of_players; i++) {
-		 cout << "printing info... \n";
-		 Pname = this->players[i]->get_name();
-		 //Pname = this->players[i].get_name();
-		 cout << "name... ";
-		 Pscore = this->players[i]->get_points();
-		 //Pscore = this->players[i].get_points();
-		 cout << "Player: " << Pname << "current score: " << Pscore << "...\n";
+		scoreboard.initScoreMap(this->players[i]->get_name(), 0);
 	}
-*/
+
 
 	for (int round = 0; round < this->max_rounds; round++) {
 		cout << "round: " << round << endl;
 		for (int i = 0; i < this->number_of_players; i++) {
 			for (int j = i; j < this->number_of_players; j++) {
+				scoreboard.UpdateScore(this->players[j]->get_name(), this->players[j]->get_points());
 				if (i != j) {
 					this->Interact(i,j);
 
 				}
 			}
 		}
+
 	}
 }
 
@@ -202,6 +200,7 @@ void Game_Manager::Display_Results() {
 		//sprintf(tempstring, "Player name: %s, Player score: %d", this->players[i]->get_name(), this->players[i]->get_points());
 		cout << "Player name: " << this->players[i]->get_name() <<", Player score: " << this->players[i]->get_points() << endl;
 		//cout << "Player name: " << this->players[i].get_name() <<", Player score: " << this->players[i].get_points();
+		scoreboard.displayScoreMap();
 	}
 
 }

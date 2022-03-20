@@ -20,6 +20,7 @@ private:
 public:
 	scoreboard();
 	map<string, int> getScoreMap();
+	void initScoreMap(string, int);
 	void UpdateScore(string, int);
 	void displayScoreMap();
 };
