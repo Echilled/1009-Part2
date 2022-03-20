@@ -188,6 +188,7 @@ void Game_Manager::Game() {
 			for (int j = i; j < this->number_of_players; j++) {
 				if (i != j) {
 					this->Interact(i,j);
+
 				}
 			}
 		}
@@ -196,7 +197,7 @@ void Game_Manager::Game() {
 
 void Game_Manager::Display_Results() {
 	for (int i = 0; i < this->number_of_players; i++) {
-		 scoreboard scoreboard;
+
 		//tempstring = (char*)calloc(1000,sizeof(char));
 		//sprintf(tempstring, "Player name: %s, Player score: %d", this->players[i]->get_name(), this->players[i]->get_points());
 		cout << "Player name: " << this->players[i]->get_name() <<", Player score: " << this->players[i]->get_points() << endl;

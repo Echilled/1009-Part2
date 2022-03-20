@@ -1,5 +1,6 @@
 #pragma once
 #include "player.h"
+#include "scoreboard.h"
 #include <string>
 #include <iostream>
 using namespace std;
@@ -17,6 +18,7 @@ private:
 
 	int cooperate_cost = 1; //cost of cooperating
 	int cooperate_reward = 2; //reward for others cooperation
+	scoreboard scoreboard;
 
 public:
 	Game_Manager(int NOP);
