@@ -35,6 +35,7 @@ void scoreboard::displayScoreMap(){
 }
 
 std::ostream& operator<<(ostream& out, const scoreboard& scoreboard) {
+	out << "Scoreboard:\n";
 	for (auto const &pair: scoreboard.score_map) {
 	        out << "{" << pair.first << ": " << pair.second << "}\n";
 	}

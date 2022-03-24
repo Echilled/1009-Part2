@@ -185,7 +185,6 @@ void Game_Manager::Game() {
 	}
 	cout << scoreboard;
 
-
 	for (int round = 0; round < this->max_rounds; round++) {
 		cout << "round: " << round << endl;
 		for (int i = 0; i < this->number_of_players; i++) {
@@ -200,11 +199,6 @@ void Game_Manager::Game() {
 	cout << scoreboard;
 
 }
-
-
-
-
-
 
 
 void Game_Manager::Display_Results() {
