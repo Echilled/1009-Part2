@@ -4,6 +4,8 @@
 #include "scoreboard.h"
 #include <iostream>
 #include <stdio.h>
+#include <iterator>
+
 
 
 Game_Manager::Game_Manager(int NOP) {
@@ -172,11 +174,16 @@ void Game_Manager::Game() {
 
 	}
 
+
+
+
+
+
 	// Intialising the scoreboard
 	for (int i = 0; i < this->number_of_players; i++) {
 		scoreboard.initScoreMap(this->players[i]->name, 0);
 	}
-	scoreboard.displayScoreMap();
+	cout << scoreboard;
 
 
 	for (int round = 0; round < this->max_rounds; round++) {
@@ -190,9 +197,15 @@ void Game_Manager::Game() {
 			scoreboard.UpdateScore(this->players[i]->name, this->players[i]->points); // Accessing private variables as game manager is a friend
 		}
 	}
-	scoreboard.displayScoreMap();
+	cout << scoreboard;
 
 }
+
+
+
+
+
+
 
 void Game_Manager::Display_Results() {
 	for (int i = 0; i < this->number_of_players; i++) {

@@ -20,7 +20,6 @@ void scoreboard::initScoreMap(string playername, int player_points = 0){ // Init
 	this->score_map.insert({ playername, player_points });
 }
 
-
 void scoreboard::UpdateScore(string playername, int player_points){
 	std::map<string, int>::iterator it = this->score_map.find(playername);
 	if (it != this->score_map.end())
@@ -33,4 +32,11 @@ void scoreboard::displayScoreMap(){
 	 for (itr1 = this->score_map.begin(); itr1 != this->score_map.end(); ++itr1) {
 	        cout << '\t' << itr1->first << '\t' << itr1->second << '\n';
 	    }
+}
+
+std::ostream& operator<<(ostream& out, const scoreboard& scoreboard) {
+	for (auto const &pair: scoreboard.score_map) {
+	        out << "{" << pair.first << ": " << pair.second << "}\n";
+	}
+	return out;
 }
