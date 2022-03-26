@@ -1,30 +1,22 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include "information_class.h"
+#include "Conversations.h"
 
 using namespace std;
 
-class Player {
+
+class Player: public Conversations, public information_class {
 private:
-	int points;
-	string name;
-	int previous_decision;
 	friend class Game_Manager;
-
 public:
-
-	Player(string name);
-
-	int get_points();
-	void set_points(int points);
-
-	int get_decision();
-	void set_decision(int decision);
-
-	string get_name();
-	void set_name(string name);
+	Player(int player_num, int round_num, int interact_num, string name);
+	Player(int player_num, int round_num, int interact_num);
 
 	virtual int make_decision() = 0; //depends on the class inheriting this class
 
 	virtual ~Player() = 0;
 };
+
+

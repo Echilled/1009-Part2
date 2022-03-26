@@ -1,5 +1,5 @@
-#include "player.h"
 #include "Game_Manager.h"
+#include "player.h"
 #include "PlayerTypes.cpp"
 #include "scoreboard.h"
 #include <iostream>
@@ -46,55 +46,6 @@ int Game_Manager::Interact(int p1, int p2) {
 	return 0;
 }*/
 
-void Game_Manager::choose_random_player_type(Player *player) {
-	int cumulative_weights[100];
-	int sum = 0;
-	int player_type_chosen;
-	int random_number;
-
-	for (int i = 0; i < this->player_types; i++) {
-		sum += this->weights[i];
-		cumulative_weights[i] = sum;
-	}
-
-	random_number = rand()%(sum);
-
-	for (int i = 0; i < this->player_types; i++) {
-		cout << "CRPT Cweight " << i << ": " << cumulative_weights[i] << endl;
-	}
-
-	for (int i = 0; i < this->player_types; i++) {
-		if (random_number <= cumulative_weights[i]) {
-			player_type_chosen = i;
-			break;
-		}
-	}
-
-	cout << "number chosen: " << random_number << ", player_type: " << player_type_chosen << endl;
-
-	switch (player_type_chosen) {
-	case 0:
-		player = new Random("placeholder 1");
-		break;
-	case 1:
-		player = new Random("placeholder 2");
-		break;
-	case 2:
-		player = new Random("placeholder 3");
-		break;
-	case 3:
-		player = new Random("placeholder 4");
-		break;
-	case 4:
-		player = new Random("placeholder 5");
-		break;
-	default:
-		player = new Random("placeholder default");
-		break;
-	}
-	cout << "player chosen: " << player->get_name() << "\n\n\n";
-}
-
 void Game_Manager::Game() {
 	string Pname;
 	string UserName;
@@ -105,7 +56,7 @@ void Game_Manager::Game() {
 	cout << "game start\n";
 	cout << "What is your name: ";
 	cin >> UserName;
-	(this->players)[0] = new User(UserName);
+	(this->players)[0] = new User(this->number_of_players, this->max_rounds, this->max_interact_rounds, UserName);
 	for (int i = 1; i < this->number_of_players; i++) {
 		 cout << "choosing player " << i << "...\n";
 
@@ -137,25 +88,25 @@ void Game_Manager::Game() {
 
 			switch (player_type_chosen) {
 			case 0:
-				(this->players)[i] = new Random("placeholder 1");
+				this->players[i] = new Random(this->number_of_players, this->max_rounds, this->max_interact_rounds);
 				break;
 			case 1:
-				(this->players)[i] = new Random("placeholder 2");
+				this->players[i] = new Random(this->number_of_players, this->max_rounds, this->max_interact_rounds);
 				break;
 			case 2:
-				(this->players)[i] = new Random("placeholder 3");
+				this->players[i] = new Random(this->number_of_players, this->max_rounds, this->max_interact_rounds);
 				break;
 			case 3:
-				(this->players)[i] = new Random("placeholder 4");
+				this->players[i] = new Random(this->number_of_players, this->max_rounds, this->max_interact_rounds);
 				break;
 			case 4:
-				(this->players)[i] = new Random("placeholder 5");
+				this->players[i] = new Random(this->number_of_players, this->max_rounds, this->max_interact_rounds);
 				break;
 			default:
-				(this->players)[i] = new Random("placeholder default");
+				this->players[i] = new Random(this->number_of_players, this->max_rounds, this->max_interact_rounds);
 				break;
 			}
-			cout << "player chosen: " << (this->players)[i]->get_name() << "\n\n\n";
+			cout << "player chosen: " << (this->players[i])->get_name() << "\n\n\n";
 			/**/
 
 		 //------------------------------------------
@@ -167,7 +118,6 @@ void Game_Manager::Game() {
 		 Pname = this->players[i]->get_name();
 		 //Pname = this->players[i].get_name();
 		 cout << "name... ";
-
 		 Pscore = this->players[i]->get_points();
 		 //Pscore = this->players[i].get_points();
 		 cout << "Player: " << Pname << "current score: " << Pscore << "...\n";
@@ -181,7 +131,7 @@ void Game_Manager::Game() {
 
 	// Intialising the scoreboard
 	for (int i = 0; i < this->number_of_players; i++) {
-		scoreboard.initScoreMap(this->players[i]->name, 0);
+		scoreboard.initScoreMap(this->players[i]->get_name(), 0);
 	}
 	cout << scoreboard;
 
@@ -193,7 +143,7 @@ void Game_Manager::Game() {
 					this->Interact(i,j);
 				}
 			}
-			scoreboard.UpdateScore(this->players[i]->name, this->players[i]->points); // Accessing private variables as game manager is a friend
+			scoreboard.UpdateScore(this->players[i]->get_name(), this->players[i]->get_points()); // Accessing private variables as game manager is a friend
 		}
 	}
 	cout << scoreboard;
@@ -206,7 +156,7 @@ void Game_Manager::Display_Results() {
 
 		//tempstring = (char*)calloc(1000,sizeof(char));
 		//sprintf(tempstring, "Player name: %s, Player score: %d", this->players[i]->get_name(), this->players[i]->get_points());
-		cout << "Player name: " << this->players[i]->get_name() <<", Player score: " << this->players[i]->get_points() << endl;
+		cout << "Player name: " << this->players[i]->get_name() <<", Player score: " << this->players[i]->get_points() << "\n";
 		//cout << "Player name: " << this->players[i].get_name() <<", Player score: " << this->players[i].get_points();
 
 	}

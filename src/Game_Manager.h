@@ -1,9 +1,11 @@
 #pragma once
-#include "player.h"
-#include "scoreboard.h"
 #include <string>
 #include <iostream>
+#include "player.h"
+#include "scoreboard.h"
 using namespace std;
+
+class Player;
 
 class Game_Manager {
 private:
@@ -13,8 +15,8 @@ private:
 	int player_types = 5; //number of player types
 	int number_of_players; //to be initialised during game
 	int weights[5] = {1,1,1,1,1};//must be same length as described by player types
-	Player* players[100];
 	//Player** players; //to be initialised during game
+	Player* players[100];
 
 	int cooperate_cost = 1; //cost of cooperating
 	int cooperate_reward = 2; //reward for others cooperation
@@ -24,6 +26,22 @@ public:
 	Game_Manager(int NOP);
 	int Interact(int p1, int p2);
 	void Game();
-	void choose_random_player_type(Player *player);
 	void Display_Results();
+
+	int* get_weights() {
+		return this->weights;
+	}
+	int get_rounds() {
+			return this->max_rounds;
+		}
+	int get_interact_rounds() {
+			return this->max_interact_rounds;
+	}
+	int get_player_types() {
+			return this->player_types;
+	}
+	int get_number_of_players() {
+			return this->number_of_players;
+	}
+
 };

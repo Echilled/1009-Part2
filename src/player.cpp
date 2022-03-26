@@ -4,32 +4,14 @@
 #include <stdlib.h>
 #include <time.h>
 #include "Player.h"
-
+#include "Game_Manager.h"
+#include "information_class.h"
+#include "conversations.h"
 using namespace std;
 
-Player::Player(string name) {
-	this->previous_decision = 1;
-	this->name = name;
-	this->points = 0;
+Player::Player(int player_num, int round_num, int interact_num, string name) : information_class(player_num, round_num, interact_num), Conversations(name){
 }
-int Player::get_points() {
-	return this->points;
-}
-void Player::set_points(int points) {
-	this->points = points;
-}
-string Player::get_name() {
-	//cout << "AAAAAAA   " << this->name << "   AAAAAAA"; //test
-	return this->name;
-}
-void Player::set_name(string name) {
-	this->name = name;
-}
-int Player::get_decision() {
-	return this->previous_decision;
-}
-void Player::set_decision(int decision) {
-	this->previous_decision = decision;
+Player::Player(int player_num, int round_num, int interact_num) : information_class(player_num, round_num, interact_num), Conversations() {
 }
 
 int Player::make_decision() {
@@ -37,4 +19,3 @@ int Player::make_decision() {
 }
 
 Player::~Player() {}
-
