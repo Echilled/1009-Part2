@@ -4,14 +4,14 @@
 
 using namespace std;
 
-class Conversations {
+class Interactor {
 private:
-	friend class Game_Manager;
 	string name;
 	string conversation;
+	string action;
 public:
-	Conversations();
-	Conversations(string name);
+	Interactor();
+	Interactor(string name);
 
 	string get_name();
 	string get_conversation();

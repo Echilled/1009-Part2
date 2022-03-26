@@ -4,19 +4,19 @@
 
 using namespace std;
 
-class information_class {
+class Information_store {
 private:
 	int points;
 	int decisions[100][100][100];
 	string playernames[100];
 
-	int player_num;
-	int round_num;
-	int interaction_num;
+	int max_player_num;
+	int max_round_num;
+	int max_interaction_num;
 	friend class Game_Manager;
 
 public:
-	information_class(int player_num, int round_num, int interact_num);
+	Information_store(int max_player_num, int max_round_num, int max_interact_num);
 	int get_points();
 	int get_decision(int player, int round, int interactions);
 	int get_decision(string playername, int round, int interactions);

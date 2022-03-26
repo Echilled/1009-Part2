@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <time.h>
 #include "player.h"
-#include "information_class.h"
 #include "Game_Manager.h"
 
 class Random: public Player {

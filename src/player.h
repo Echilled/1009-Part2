@@ -1,13 +1,13 @@
 #pragma once
 #include <string>
 #include <iostream>
-#include "information_class.h"
-#include "Conversations.h"
+#include "Information_store.h"
+#include "Interactor.h"
 
 using namespace std;
 
 
-class Player: public Conversations, public information_class {
+class Player: public Interactor, public Information_store {
 private:
 	friend class Game_Manager;
 public:
