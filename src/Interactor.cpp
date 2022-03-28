@@ -14,7 +14,7 @@ Interactor::Interactor(string name) {
 }
 
 string Interactor::randomise_name() {
-	string a[] = {"A1","B2","C3","D4","E5"};
+	string a[] = {"Bob(AI)","Jack(AI)","Billy(AI)","Ginger(AI)","Gary(AI)"};
 	return a[rand()%5];
 }
 string Interactor::randomise_conversation() {

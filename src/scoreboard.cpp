@@ -9,7 +9,7 @@
 using namespace std;
 
 scoreboard::scoreboard(){
-	cout << "this is the scoreboard constructor";
+	cout << "This is the scoreboard constructor";
 }
 
 map<string, int> scoreboard::getScoreMap(){
@@ -35,7 +35,8 @@ void scoreboard::displayScoreMap(){
 }
 
 std::ostream& operator<<(ostream& out, const scoreboard& scoreboard) {
-	out << "Scoreboard:\n";
+	out << "===================================================" << endl;
+  out << "Scoreboard:\n";
 	for (auto const &pair: scoreboard.score_map) {
 	        out << "{" << pair.first << ": " << pair.second << "}\n";
 	}

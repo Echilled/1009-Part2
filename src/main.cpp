@@ -3,8 +3,8 @@
 #include <iostream>
 int main() {
 	int PH;
-	int players = 10;
-	cout << "number of players: ";
+	int players = 5;
+	cout << "Number of Bot(AI): ";
 
 	try {
 		while (!(cin >> players)) {
@@ -15,13 +15,13 @@ int main() {
 		cout << "bad\n";
 	}
 
-	cout << "chosen number of players: ";
+	cout << "Chosen number of Bot(AI): ";
 	cout << players;
 	cout << "\n";
 	//Sleep(100);
 
 	Game_Manager GM = Game_Manager(players);
-	cout << "starting game\n";
+	cout << "Starting game... Please wait.\n";
 	GM.Game();
 	GM.Display_Results();
 

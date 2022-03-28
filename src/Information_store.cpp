@@ -29,7 +29,7 @@ void Information_store::set_points(int points) {
 	this->points = points;
 }
 void Information_store::set_decision(int decision, string playername, int round, int interaction) {
-	int playernumber;
+	int playernumber = 0;
 	this->decisions[playernumber][round][interaction] = decision;
 }
 

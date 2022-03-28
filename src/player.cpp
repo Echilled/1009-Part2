@@ -15,7 +15,7 @@ Player::Player(int player_num, int round_num, int interact_num) : Information_st
 }
 
 int Player::make_decision() {
-	return 0;
+  return 0;
 }
 
 Player::~Player() {}

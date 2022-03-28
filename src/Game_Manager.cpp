@@ -9,27 +9,28 @@
 
 
 Game_Manager::Game_Manager(int NOP) {
-	cout << "check\n";
+	// cout << "check\n";
 	srand(time(0));
 	this->number_of_players = NOP;
 	//this->players = (Player*)calloc(NOP, sizeof(Player*));
 	//this->players = (Player**)calloc(NOP, sizeof(Player*));
 };
 
-int Game_Manager::Interact(int p1, int p2) {
+void Game_Manager::Interact(int p1, int p2) {
 	Player* player_1 = this->players[p1];
 	Player* player_2 = this->players[p2];
+  cout << "==================================================="<< endl;
 
 	cout << "player: " << player_1->get_name() << " is interacting with " << player_2->get_name() << endl;
 
 	for (int i = 0; i < this->max_interact_rounds; i++) {
-		int p1_dec = player_1->make_decision();
-		int p2_dec = player_2->make_decision();
+		int p1_dec = player_1->make_decision(); // player
+		int p2_dec = player_2->make_decision(); // bot
 
+  
 		player_1->set_points(player_1->get_points() + this->cooperate_reward * p2_dec - this->cooperate_cost*p1_dec);
 		player_2->set_points(player_2->get_points() + this->cooperate_reward * p1_dec - this->cooperate_cost*p2_dec);
 	}
-	return 0;
 }
 /*
 int Game_Manager::Interact(int p1, int p2) {
@@ -53,7 +54,7 @@ void Game_Manager::Game() {
 
 	//Player* player_objects[5] = {&Random("P1"),&Random("P2"),&Random("P3"),&Random("P4"),&Random("P5")};
 	//cout << "Random name: " << Random("name").get_name() << endl;
-	cout << "game start\n";
+	cout << "Game has started\n";
 	cout << "What is your name: ";
 	cin >> UserName;
 	(this->players)[0] = new User(this->number_of_players, this->max_rounds, this->max_interact_rounds, UserName);
@@ -136,7 +137,8 @@ void Game_Manager::Game() {
 	cout << scoreboard;
 
 	for (int round = 0; round < this->max_rounds; round++) {
-		cout << "round: " << round << endl;
+		cout << "===================================================" << endl;
+    cout << "Round: " << round << endl;
 		for (int i = 0; i < this->number_of_players; i++) {
 			for (int j = i; j < this->number_of_players; j++) {
 				if (i != j) {
@@ -159,7 +161,10 @@ void Game_Manager::Display_Results() {
 		cout << "Player name: " << this->players[i]->get_name() <<", Player score: " << this->players[i]->get_points() << "\n";
 		//cout << "Player name: " << this->players[i].get_name() <<", Player score: " << this->players[i].get_points();
 
+
 	}
+  cout << "==================================================="<< endl;
+
 
 }
 
