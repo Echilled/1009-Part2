@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "Player.h"
+#include "player.h"
 #include "Game_Manager.h"
 #include "Information_store.h"
 #include "Interactor.h"
