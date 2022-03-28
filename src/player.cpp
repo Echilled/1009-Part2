@@ -18,4 +18,18 @@ int Player::make_decision() {
   return 0;
 }
 
+
+int Player::get_lifeline_count(){
+  return lifeline_count;
+}
+
+
+void Player::minus_lifeline(){
+  if (this->lifeline_count >0){
+    this->lifeline_count--;
+  }else{
+    cout << "No more Lifeline. No lifeline given..." << endl;
+  }
+}
+
 Player::~Player() {}

@@ -24,6 +24,7 @@ public:
 
 class User : public Player {
 private:
+
 public:
   User(int player_num, int round_num, int interact_num, string name)
       : Player(player_num, round_num, interact_num, name) {}

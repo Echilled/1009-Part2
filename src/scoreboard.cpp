@@ -9,7 +9,7 @@
 using namespace std;
 
 scoreboard::scoreboard(){
-	cout << "This is the scoreboard constructor";
+	cout << "This is the scoreboard constructor"<< endl;
 }
 
 map<string, int> scoreboard::getScoreMap(){
