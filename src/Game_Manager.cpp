@@ -43,11 +43,35 @@ void Game_Manager::Interact(int p1, int p2) {
         cout << "2) Force current Bot(AI) to Cooperate with you." << endl;
         cout << "Lifeline decision required: " << endl;
         cin >> lifeline_decision;
-        
+
         if (lifeline_decision > 2 || lifeline_decision < 1) {
-          cout << "Invalid Option. Please choose the following options again." << endl;
+          cout << "Invalid Option. Please choose the following options again."
+               << endl;
         }
       } while (lifeline_decision != 1 && lifeline_decision != 2);
+      if (lifeline_decision) {
+        cout <<"---------------------------------------------"<<endl;
+
+        if (lifeline_decision == 1 && player_1->get_lifeline_count() > 0) {
+          cout << "Lifeline 1 chosen: Reveal Bot(AI) Type" << endl;
+          cout << player_2->get_name() << "'s player type is ["
+               << player_2->get_playerType()<< "]"<< endl;
+          player_1 -> minus_lifeline();
+          
+          // Minus Score for using lifeline
+          cout << "Deducting Score for using lifeline..."<<endl;
+          
+          
+        } else if (lifeline_decision == 2&& player_1->get_lifeline_count() > 0) {
+          // HEHE
+          
+        }else if (player_1->get_lifeline_count() == 0){
+          cout<<"Not enough lifeline count. Unable to use lifeline."<< endl;
+          
+        }
+        cout <<"---------------------------------------------"<<endl;
+
+      }
     }
 
     player_1->set_points(player_1->get_points() +
@@ -87,7 +111,7 @@ void Game_Manager::Game() {
   cout << "What is your name: ";
   cin >> UserName;
   (this->players)[0] = new User(this->number_of_players, this->max_rounds,
-                                this->max_interact_rounds, UserName);
+                                this->max_interact_rounds, "User", UserName);
   for (int i = 1; i < this->number_of_players; i++) {
     cout << "choosing player " << i << "...\n";
 
@@ -121,27 +145,27 @@ void Game_Manager::Game() {
     switch (player_type_chosen) {
     case 0:
       this->players[i] = new Random(this->number_of_players, this->max_rounds,
-                                    this->max_interact_rounds);
+                                    this->max_interact_rounds, "Random");
       break;
     case 1:
       this->players[i] = new Random(this->number_of_players, this->max_rounds,
-                                    this->max_interact_rounds);
+                                    this->max_interact_rounds, "Angel");
       break;
     case 2:
       this->players[i] = new Random(this->number_of_players, this->max_rounds,
-                                    this->max_interact_rounds);
+                                    this->max_interact_rounds, "Devil");
       break;
     case 3:
       this->players[i] = new Random(this->number_of_players, this->max_rounds,
-                                    this->max_interact_rounds);
+                                    this->max_interact_rounds, "CopyCat");
       break;
     case 4:
       this->players[i] = new Random(this->number_of_players, this->max_rounds,
-                                    this->max_interact_rounds);
+                                    this->max_interact_rounds, "???");
       break;
     default:
       this->players[i] = new Random(this->number_of_players, this->max_rounds,
-                                    this->max_interact_rounds);
+                                    this->max_interact_rounds, "CaseDefault");
       break;
     }
     cout << "player chosen: " << (this->players[i])->get_name() << "\n\n\n";

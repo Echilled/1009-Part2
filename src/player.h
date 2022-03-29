@@ -3,22 +3,23 @@
 #include <iostream>
 #include "Information_store.h"
 #include "Interactor.h"
+#include "Lifeline.h"
 
 using namespace std;
 
 
-class Player: public Interactor, public Information_store {
+class Player: public Interactor, public Information_store, public Lifeline{
 private:
 	friend class Game_Manager;
-  int lifeline_count = 2;
+
+protected:  
+  string player_type;
 
 public:
-	Player(int player_num, int round_num, int interact_num, string name);
-	Player(int player_num, int round_num, int interact_num);
+	Player(int player_num, int round_num, int interact_num, string player_type, string name);
+	Player(int player_num, int round_num, int interact_num, string player_type);
   
-  int get_lifeline_count();
-  void minus_lifeline();
-
+  string get_playerType();
 	virtual int make_decision() = 0; //depends on the class inheriting this class
 
 	virtual ~Player() = 0;
