@@ -12,16 +12,14 @@ public:
   Random(int player_num, int round_num, int interact_num, string player_type, string name)
       : Player(player_num, round_num, interact_num, player_type, name){
         this->player_type = player_type;
-        this->lifeline_count = lifeline_count;
       }
   Random(int player_num, int round_num, int interact_num, string player_type)
       : Player(player_num, round_num, interact_num, player_type){
         this->player_type = player_type;
-        this->lifeline_count = lifeline_count;
       }
 
   int make_decision() override {
-    int decision = rand() % 2;
+    int decision = (rand() % 2) + 1;
     return decision;
   }
 };

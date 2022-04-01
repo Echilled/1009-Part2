@@ -24,7 +24,7 @@ private:
 
 public:
 	Game_Manager(int NOP);
-	void Interact(int p1, int p2);
+	void Interact(int p1, int p2, int round);
 	void Game();
 	void Display_Results();
 

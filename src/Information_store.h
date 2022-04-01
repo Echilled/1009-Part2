@@ -22,9 +22,9 @@ public:
 	int get_decision(string playername, int round, int interactions);
 	int*** get_decision_array();
 
-	void set_points(int points);
+	
 	void set_decision(int decision, int player, int round, int interaction);
 	void set_decision(int decision, string playername, int round, int interaction);
-
+	void set_points(int points);
 
 };

@@ -21,6 +21,7 @@ Information_store::Information_store(int max_player_num, int max_round_num, int 
 int Information_store::get_points() {
 	return this->points;
 }
+
 int Information_store::get_decision(int player, int round, int interact) {
 	return this->decisions[player][round][interact];
 }
@@ -28,12 +29,9 @@ int Information_store::get_decision(int player, int round, int interact) {
 void Information_store::set_points(int points) {
 	this->points = points;
 }
+
 void Information_store::set_decision(int decision, string playername, int round, int interaction) {
 	int playernumber = 0;
 	this->decisions[playernumber][round][interaction] = decision;
 }
-
-
-
-
 
