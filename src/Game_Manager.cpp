@@ -104,8 +104,8 @@ this->cooperate_reward * p1_dec - this->cooperate_cost*p2_dec);
 
 
 
-template <typename T>
-void sortMap(map<T, int> &map){
+template <typename T, typename U>
+void sortMap(map<T, U> &map){
 	cout << "this works";
 }
 
