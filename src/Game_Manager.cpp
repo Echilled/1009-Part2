@@ -91,11 +91,9 @@ void Game_Manager::Interact(int p1, int p2,int round) {
 int Game_Manager::Interact(int p1, int p2) {
         Player player_1 = this->players[p1];
         Player player_2 = this->players[p2];
-
         for (int i = 0; i < this->max_interact_rounds; i++) {
                 int p1_dec = player_1.make_decision();
                 int p2_dec = player_2.make_decision();
-
                 player_1.set_points(player_1.get_points() +
 this->cooperate_reward * p2_dec - this->cooperate_cost*p1_dec);
                 player_2.set_points(player_2.get_points() +
@@ -103,6 +101,14 @@ this->cooperate_reward * p1_dec - this->cooperate_cost*p2_dec);
         }
         return 0;
 }*/
+
+
+
+template <typename T>
+void sortMap(map<T, int> &map){
+	cout << "this works";
+}
+
 
 void Game_Manager::Game() {
   string Pname;
@@ -212,6 +218,7 @@ void Game_Manager::Game() {
     }
   }
   cout << scoreboard;
+  sortMap(scoreboard.score_map);
 }
 
 void Game_Manager::Display_Results() {
