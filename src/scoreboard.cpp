@@ -3,12 +3,50 @@
 #include "scoreboard.h"
 #include "player.h"
 #include <iterator>
-
+#include <vector>
+#include <algorithm>
+#include <map>
+#include <bits/stdc++.h>
 using namespace std;
+
 
 scoreboard::scoreboard(){
 	cout << "This is the scoreboard constructor"<< endl;
 }
+
+// Comparison function for sorting the
+// set by increasing order of its pair's
+// second value
+struct comp {
+    template <typename T>
+    // Comparator function
+    bool operator()(const T& l,
+                    const T& r) const
+    {
+        if (l.second != r.second) {
+            return l.second < r.second;
+        }
+        return l.first < r.first;
+    }
+};
+
+
+// Function to sort the map according
+// to value in a (key-value) pairss
+void scoreboard::sort(map<string, int>& M)
+{
+
+    // Declare set of pairs and insert
+    // pairs according to the comparator
+    // function comp()
+    set<pair<string, int>, comp> S(M.begin(),
+                                   M.end());
+
+
+}
+
+
+
 
 map<string, int> scoreboard::getScoreMap(){
 	return this->score_map;
@@ -24,6 +62,8 @@ void scoreboard::UpdateScore(string playername, int player_points){
 	    it->second = player_points;
 }
 
+
+
 void scoreboard::displayScoreMap(){
 	map<string, int>::iterator itr1;
 	cout << "Score map:" <<endl;
@@ -33,8 +73,9 @@ void scoreboard::displayScoreMap(){
 }
 
 std::ostream& operator<<(ostream& out, const scoreboard& scoreboard) {
-	out << "===================================================" << endl;
+  out << "===================================================" << endl;
   out << "Scoreboard:\n";
+
 	for (auto const &pair: scoreboard.score_map) {
 	        out << "{" << pair.first << ": " << pair.second << "}\n";
 	}
