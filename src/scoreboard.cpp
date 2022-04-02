@@ -14,38 +14,6 @@ scoreboard::scoreboard(){
 	cout << "This is the scoreboard constructor"<< endl;
 }
 
-// Comparison function for sorting the
-// set by increasing order of its pair's
-// second value
-struct comp {
-    template <typename T>
-    // Comparator function
-    bool operator()(const T& l,
-                    const T& r) const
-    {
-        if (l.second != r.second) {
-            return l.second < r.second;
-        }
-        return l.first < r.first;
-    }
-};
-
-
-// Function to sort the map according
-// to value in a (key-value) pairss
-void scoreboard::sort(map<string, int>& M)
-{
-
-    // Declare set of pairs and insert
-    // pairs according to the comparator
-    // function comp()
-    set<pair<string, int>, comp> S(M.begin(),
-                                   M.end());
-
-
-}
-
-
 
 
 map<string, int> scoreboard::getScoreMap(){
@@ -72,12 +40,30 @@ void scoreboard::displayScoreMap(){
 	    }
 }
 
+
+struct comp {
+    template <typename T>
+    // Comparator function
+    bool operator()(const T& l,
+                    const T& r) const
+    {
+        if (l.second != r.second) {
+            return l.second < r.second;
+        }
+        return l.first < r.first;
+    }
+};
+
+
 std::ostream& operator<<(ostream& out, const scoreboard& scoreboard) {
   out << "===================================================" << endl;
   out << "Scoreboard:\n";
+  set<pair<string, int>, comp> S(scoreboard.score_map.begin(),
+		  scoreboard.score_map.end());
+   for (auto& it : S) {
+          out << it.first << ' '
+               << it.second << endl;
+      }
 
-	for (auto const &pair: scoreboard.score_map) {
-	        out << "{" << pair.first << ": " << pair.second << "}\n";
-	}
 	return out;
 }
