@@ -217,8 +217,8 @@ void Game_Manager::Game() {
                                            // game manager is a friend
     }
   }
+  scoreboard.sort(scoreboard.score_map);
   cout << scoreboard;
-  sortMap(scoreboard.score_map);
 }
 
 void Game_Manager::Display_Results() {
