@@ -23,7 +23,8 @@ public:
 	void initScoreMap(string, int);
 	void UpdateScore(string, int);
 	void displayScoreMap();
-//	friend class Game_Manager;
+	void sort(map<string, int>& M);
+    friend class Game_Manager;
 	friend ostream& operator<<(ostream& out, const scoreboard& scoreboard);
 
 };
