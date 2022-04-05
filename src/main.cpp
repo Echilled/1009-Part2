@@ -11,7 +11,7 @@ void play_music(int i) {
 		PlaySound(TEXT("IDR_WAVE1"), GetModuleHandle(NULL), SND_RESOURCE | SND_ASYNC);
 	}
 	catch (...) {
-		cout << "No audio file found\n";
+		cout << "Audio failed to play\n";
 	}
  }
 void play_music(float f) {
@@ -19,7 +19,7 @@ void play_music(float f) {
 		PlaySound(TEXT("IDR_WAVE2"), GetModuleHandle(NULL), SND_RESOURCE | SND_ASYNC);
 	}
 	catch (...) {
-		cout << "No audio file found\n";
+		cout << "Audio failed to play\n";
 	}
 }
 
