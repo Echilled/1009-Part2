@@ -8,7 +8,7 @@
 #pragma comment( lib, "Winmm.lib" )
 void play_music(int i) {
 	try {
-		PlaySound(TEXT("song.wav"), NULL, SND_FILENAME | SND_ASYNC); 
+		PlaySound(TEXT("IDR_WAVE1"), GetModuleHandle(NULL), SND_RESOURCE | SND_ASYNC);
 	}
 	catch (...) {
 		cout << "No audio file found\n";
@@ -16,7 +16,7 @@ void play_music(int i) {
  }
 void play_music(float f) {
 	try {
-		PlaySound(TEXT("song2.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		PlaySound(TEXT("IDR_WAVE2"), GetModuleHandle(NULL), SND_RESOURCE | SND_ASYNC);
 	}
 	catch (...) {
 		cout << "No audio file found\n";
