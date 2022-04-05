@@ -59,21 +59,25 @@ void Game_Manager::Interact(int p1, int p2,int round) {
 
         lifeline_decision = player_1->lifeline_menu(lifeline_count);
         if (lifeline_decision == 1 && lifeline_count > 0) {  // Lifeline_decision 1: Reveal Type
-          cout << "Lifeline 1 chosen: Reveal Bot(AI) Type" << endl;
-          cout << player_2->get_name() << "'s player type is ["
-               << player_2->get_playerType() << "]" << endl;
+            cout << "Lifeline 1 chosen: Reveal Bot(AI) Type" << endl;
+            cout << player_2->get_name() << "'s player type is [" << player_2->get_playerType() << "]" << endl;
 
-          // Minus Score for using lifeline
-          cout << "Deducting Score for using lifeline..." << endl;
-          player_1->minus_lifeline();
-					lifeline_count = player_1->get_lifeline_count();
+            // Minus Score for using lifeline
+            cout << "Deducting Score for using lifeline..." << endl;
+            player_1->minus_lifeline();
+			lifeline_count = player_1->get_lifeline_count();
 
-        } else if (lifeline_decision == 2 && lifeline_count > 0) {  
-          // Lifeline_decision 2: AI Force Cooperate
-					// player_2->set_decision(2, player_2->get_name(), int round, int interaction)
-          
-          
-					lifeline_count = player_1->get_lifeline_count();
+        } else if (lifeline_decision == 2 && lifeline_count > 0) {  // Lifeline_decision 2: AI Force Cooperate
+            cout << "Lifeline 2 chosen: Force current Bot(AI) to Cooperate with you." << endl;
+            cout << player_2->get_name() << "will now choose to Cooperate..." << endl;
+            p2_dec = 2;
+            cout << "---------------------------------------------" << endl;
+
+            // Minus Score for using lifeline
+            cout << "Deducting Score for using lifeline..." << endl;
+            player_1->minus_lifeline();
+            lifeline_count = player_1->get_lifeline_count();
+
           
         } else if (lifeline_count == 0) {
           cout << "Not enough lifeline count. Unable to use lifeline." << endl;
@@ -81,7 +85,7 @@ void Game_Manager::Interact(int p1, int p2,int round) {
         }
 				//allow user to choose select actions after using lifeline
         p1_dec = player_1->make_decision();
-				cout << "---------------------------------------------" << endl;
+		cout << "---------------------------------------------" << endl;
 
       }
     } while (p1_dec != 1 && p1_dec != 2);    

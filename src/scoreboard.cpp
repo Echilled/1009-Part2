@@ -6,7 +6,7 @@
 #include <vector>
 #include <algorithm>
 #include <map>
-#include <bits/stdc++.h>
+#include <set>
 using namespace std;
 
 
@@ -55,11 +55,11 @@ struct comp {
 };
 
 
+
 std::ostream& operator<<(ostream& out, const scoreboard& scoreboard) {
   out << "===================================================" << endl;
   out << "Scoreboard:\n";
-  set<pair<string, int>, comp> S(scoreboard.score_map.begin(),
-		  scoreboard.score_map.end());
+  set<pair<string, int>, comp> S(scoreboard.score_map.begin(),scoreboard.score_map.end());
    for (auto& it : S) {
           out << it.first << ' '
                << it.second << endl;
@@ -67,3 +67,4 @@ std::ostream& operator<<(ostream& out, const scoreboard& scoreboard) {
 
 	return out;
 }
+
