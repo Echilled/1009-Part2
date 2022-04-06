@@ -14,7 +14,7 @@ Player::Player(int player_num, int round_num, int interact_num,string player_typ
 Player::Player(int player_num, int round_num, int interact_num, string player_type) : Information_store(player_num, round_num, interact_num), Interactor() {
 }
 
-int Player::make_decision() {
+int Player::make_decision(string, int, int) {
   return 0;
 }
 

@@ -16,7 +16,7 @@ Game_Manager::Game_Manager(int NOP) {
   // this->players = (Player**)calloc(NOP, sizeof(Player*));
 };
 
-void Game_Manager::Interact(int p1, int p2,int round) {
+void Game_Manager::Interact(int p1, int p2, int round, int interact) {
   Player *player_1 = this->players[p1];
   Player *player_2 = this->players[p2];
 
@@ -26,9 +26,8 @@ void Game_Manager::Interact(int p1, int p2,int round) {
        << player_2->get_name() << endl;
 
   
-  for (int i = 0; i < this->max_interact_rounds; i++) {
-    int p1_dec = player_1->make_decision(); // player
-    int p2_dec = player_2->make_decision(); // bot
+    int p1_dec = player_1->make_decision(player_2->get_name(), round, interact);
+	int p2_dec = player_2->make_decision(player_1->get_name(), round, interact);
 
     do {
       if (p1_dec == 1) { // Player decision 1 = cheats
@@ -84,28 +83,18 @@ void Game_Manager::Interact(int p1, int p2,int round) {
 					
         }
 				//allow user to choose select actions after using lifeline
-        p1_dec = player_1->make_decision();
+        p1_dec = player_1->make_decision(player_2->get_name(), round, interact);
 		cout << "---------------------------------------------" << endl;
 
       }
     } while (p1_dec != 1 && p1_dec != 2);    
-  }
-}
-/*
-int Game_Manager::Interact(int p1, int p2) {
-        Player player_1 = this->players[p1];
-        Player player_2 = this->players[p2];
-        for (int i = 0; i < this->max_interact_rounds; i++) {
-                int p1_dec = player_1.make_decision();
-                int p2_dec = player_2.make_decision();
-                player_1.set_points(player_1.get_points() +
-this->cooperate_reward * p2_dec - this->cooperate_cost*p1_dec);
-                player_2.set_points(player_2.get_points() +
-this->cooperate_reward * p1_dec - this->cooperate_cost*p2_dec);
-        }
-        return 0;
-}*/
 
+    this->players[p1]->set_self_decision(p1_dec, this->players[p2]->get_name(), round, interact);
+    this->players[p1]->set_decision(p2_dec, this->players[p2]->get_name(), round, interact);
+    cout << "p1 done";
+    this->players[p2]->set_self_decision(p2_dec, this->players[p1]->get_name(), round, interact);
+    this->players[p2]->set_decision(p1_dec, this->players[p1]->get_name(), round, interact);
+}
 
 
 template <typename T, typename U>
@@ -142,13 +131,13 @@ void Game_Manager::Game() {
     }
 
     random_number = rand() % (sum);
-
+    cout << "sum: " << sum << endl;
     for (int i = 0; i < this->player_types; i++) {
       cout << "CRPT Cweight " << i << ": " << cumulative_weights[i] << endl;
     }
 
     for (int i = 0; i < this->player_types; i++) {
-      if (random_number <= cumulative_weights[i]) {
+      if (random_number < cumulative_weights[i]) {
         player_type_chosen = i;
         break;
       }
@@ -163,20 +152,20 @@ void Game_Manager::Game() {
                                     this->max_interact_rounds, "Random");
       break;
     case 1:
-      this->players[i] = new Random(this->number_of_players, this->max_rounds,
+      this->players[i] = new Angel(this->number_of_players, this->max_rounds,
                                     this->max_interact_rounds, "Angel");
       break;
     case 2:
-      this->players[i] = new Random(this->number_of_players, this->max_rounds,
+      this->players[i] = new Devil(this->number_of_players, this->max_rounds,
                                     this->max_interact_rounds, "Devil");
       break;
     case 3:
-      this->players[i] = new Random(this->number_of_players, this->max_rounds,
+      this->players[i] = new CopyCat(this->number_of_players, this->max_rounds,
                                     this->max_interact_rounds, "CopyCat");
       break;
     case 4:
-      this->players[i] = new Random(this->number_of_players, this->max_rounds,
-                                    this->max_interact_rounds, "???");
+      this->players[i] = new Hateful(this->number_of_players, this->max_rounds,
+                                    this->max_interact_rounds, "Hateful");
       break;
     default:
       this->players[i] = new Random(this->number_of_players, this->max_rounds,
@@ -196,8 +185,9 @@ void Game_Manager::Game() {
     // Pname = this->players[i].get_name();
     cout << "name... ";
     Pscore = this->players[i]->get_points();
+    string Ptype = this->players[i]->get_playerType();
     // Pscore = this->players[i].get_points();
-    cout << "Player: " << Pname << "current score: " << Pscore << "...\n";
+    cout << "Player: " << Pname << "current score: " << Pscore << "Player type: " << Ptype << "...\n";
   }
 
   // Intialising the scoreboard
@@ -212,7 +202,9 @@ void Game_Manager::Game() {
     for (int i = 0; i < this->number_of_players; i++) {
       for (int j = i; j < this->number_of_players; j++) {
         if (i != j) {
-          this->Interact(i, j,round);
+          for (int k = 0; k < this->max_interact_rounds; k++) {
+            this->Interact(i, j, round, k);
+          }
         }
       }
       scoreboard.UpdateScore(
@@ -221,7 +213,7 @@ void Game_Manager::Game() {
                                            // game manager is a friend
     }
   }
-
+  (this->players)[0]->print_decision_matrix((this->players)[0]->get_name());
   cout << scoreboard;
 }
 

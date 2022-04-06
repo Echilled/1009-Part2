@@ -10,6 +10,12 @@ Lifeline::Lifeline() {
 int Lifeline::get_lifeline_count() {
     return lifeline_count;
 }
+void Lifeline::set_lifeline_selection(int selection) {
+	this->lifeline_selection = selection;
+}
+int Lifeline::get_lifeline_selection() {
+	return this->lifeline_selection;
+}
 
 void Lifeline::minus_lifeline() {
     if (this->lifeline_count > 0) {

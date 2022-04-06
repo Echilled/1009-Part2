@@ -20,7 +20,7 @@ public:
 	Player(int player_num, int round_num, int interact_num, string player_type);
   
   string get_playerType();
-	virtual int make_decision() = 0; //depends on the class inheriting this class
+	virtual int make_decision(string, int, int) = 0; //depends on the class inheriting this class
 
 	virtual ~Player() = 0;
 };
