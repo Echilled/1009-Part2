@@ -82,11 +82,11 @@ void Information_store::set_points(int points) {
 	this->points = points;
 }
 
-void Information_store::set_decision(int decision, int player, int round, int interaction) {
+void Information_store::set_opponent_decision(int decision, int player, int round, int interaction) {
 	this->decisions[player][round][interaction] = decision;
 }
 
-void Information_store::set_decision(int decision, string playername, int round, int interaction) {
+void Information_store::set_opponent_decision(int decision, string playername, int round, int interaction) {
 	int playernumber = -1;
 	for (int i = 0; i < this->max_player_num; i++) {
 		if (!playername.compare(this->playernames[i])) {
@@ -108,7 +108,7 @@ void Information_store::set_decision(int decision, string playername, int round,
 		cout << "An error occurred when setting decision sd\n";
 		return;
 	}
-	this->set_decision(decision, playernumber, round, interaction);
+	this->set_opponent_decision(decision, playernumber, round, interaction);
 }
 
 void Information_store::set_self_decision(int decision, int player, int round, int interaction) {

@@ -32,8 +32,8 @@ public:
 	void get_stats(int* self_cooperate_count, int* self_cheat_count, int* others_cooperate_count, int* others_cheat_count);
 
 	void set_points(int points);
-	void set_decision(int decision, int player, int round, int interaction);
-	void set_decision(int decision, string playername, int round, int interaction);
+	void set_opponent_decision(int decision, int player, int round, int interaction);
+	void set_opponent_decision(int decision, string playername, int round, int interaction);
 	void set_self_decision(int decision, int player, int round, int interaction);
 	void set_self_decision(int decision, string playername, int round, int interaction);
 

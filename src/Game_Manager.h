@@ -14,18 +14,15 @@ private:
 
 	int player_types = 5; //number of player types
 	int number_of_players; //to be initialised during game
-	int weights[5] = {1,1,1,1,1};//must be same length as described by player types
+	int weights[5] = { 1,1,1,1,1 };//must be same length as described by player types
 	//Player** players; //to be initialised during game
-	Player* players[100];
+	Player* players[10];
 
-	int cooperate_cost = 1; //cost of cooperating
-	int cooperate_reward = 3; //reward for others cooperation
 	scoreboard scoreboard;
 
 public:
 	Game_Manager(int NOP);
 	void Interact(int p1, int p2, int round, int interact);
-	void Interact2(int p1, int p2, int round, int interact);
 	void Game();
 	void Display_Results();
 
@@ -33,16 +30,16 @@ public:
 		return this->weights;
 	}
 	int get_rounds() {
-			return this->max_rounds;
-		}
+		return this->max_rounds;
+	}
 	int get_interact_rounds() {
-			return this->max_interact_rounds;
+		return this->max_interact_rounds;
 	}
 	int get_player_types() {
-			return this->player_types;
+		return this->player_types;
 	}
 	int get_number_of_players() {
-			return this->number_of_players;
+		return this->number_of_players;
 	}
 
 };

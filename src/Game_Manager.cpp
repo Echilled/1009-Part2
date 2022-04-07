@@ -9,21 +9,18 @@
 using namespace std;
 
 Game_Manager::Game_Manager(int NOP) {
-  // cout << "check\n";
   srand(time(0));
   this->number_of_players = NOP;
-  // this->players = (Player*)calloc(NOP, sizeof(Player*));
-  // this->players = (Player**)calloc(NOP, sizeof(Player*));
+
 };
 
 void Game_Manager::Interact(int p1, int p2, int round, int interact) {
   Player *player_1 = this->players[p1];
   Player *player_2 = this->players[p2];
 
-  int lifeline_count = player_1->get_lifeline_count();
+  int lifeline_count = player_1->lifeline.get_lifeline_count();
   cout << "===================================================" << endl;
-  cout << "player: " << player_1->get_name() << " is interacting with "
-       << player_2->get_name() << endl;
+  cout << "player: " << player_1->get_name() << " is interacting with " << player_2->get_name() << endl;
 
   
     int p1_dec = player_1->make_decision(player_2->get_name(), round, interact);
@@ -32,39 +29,41 @@ void Game_Manager::Interact(int p1, int p2, int round, int interact) {
     do {
       if (p1_dec == 1) { // Player decision 1 = cheats
         if (p2_dec == 1) { // BOT Cheats
-            cout << player_2->get_name() << "chose to Cheat!" << endl;
+            cout << player_1->get_name() << " chose to Cheat!" << endl;
+            cout << player_2->get_name() << " chose to Cheat!" << endl;
           
         } else if (p2_dec == 2) { // BOT Cooperates
-          cout << player_2->get_name() << "chose to Cooperate!" << endl;
-          player_1->set_points(player_1->get_points() + 3);
-          player_2->set_points(player_2->get_points() - 1);
+            cout << player_1->get_name() << " chose to Cheat!" << endl;
+            cout << player_2->get_name() << " chose to Cooperate!" << endl;
+            player_1->set_points(player_1->get_points() + 3);
+            player_2->set_points(player_2->get_points() - 1);
         }
         
       } else if (p1_dec == 2) { // Player decision 2 = cooperate
-        	if (p2_dec == 1) { // BOT Cheats
-            cout << player_2->get_name() << "chose to Cheat!" << endl;
-						player_1->set_points(player_1->get_points() - 1);
-						player_2->set_points(player_2->get_points() + 3);
-				          
-					}else if (p2_dec == 2) { // BOT Cooperates
-            cout << player_2->get_name() << "chose to Cooperate!" << endl;
-						player_1->set_points(player_1->get_points() + 1);
-						player_2->set_points(player_2->get_points() + 1);
-						
-					}
+          if (p2_dec == 1) { // BOT Cheats
+              cout << player_1->get_name() << " chose to Cooperate!" << endl;
+              cout << player_2->get_name() << " chose to Cheat!" << endl;
+              player_1->set_points(player_1->get_points() - 1);
+              player_2->set_points(player_2->get_points() + 3);
+          }else if (p2_dec == 2) { // BOT Cooperates
+              cout << player_1->get_name() << " chose to Cooperate!" << endl;
+              cout << player_2->get_name() << " chose to Cooperate!" << endl;
+              player_1->set_points(player_1->get_points() + 1);
+              player_2->set_points(player_2->get_points() + 1);
+          }
 
       } else if (p1_dec == 3) { // Player decision 3 = Lifeline
         int lifeline_decision;
 
-        lifeline_decision = player_1->lifeline_menu(lifeline_count);
+        lifeline_decision = player_1->lifeline.lifeline_menu(lifeline_count);
         if (lifeline_decision == 1 && lifeline_count > 0) {  // Lifeline_decision 1: Reveal Type
             cout << "Lifeline 1 chosen: Reveal Bot(AI) Type" << endl;
             cout << player_2->get_name() << "'s player type is [" << player_2->get_playerType() << "]" << endl;
 
             // Minus Score for using lifeline
             cout << "Deducting Score for using lifeline..." << endl;
-            player_1->minus_lifeline();
-			lifeline_count = player_1->get_lifeline_count();
+            player_1->lifeline.minus_lifeline();
+			lifeline_count = player_1->lifeline.get_lifeline_count();
 
         } else if (lifeline_decision == 2 && lifeline_count > 0) {  // Lifeline_decision 2: AI Force Cooperate
             cout << "Lifeline 2 chosen: Force current Bot(AI) to Cooperate with you." << endl;
@@ -74,26 +73,28 @@ void Game_Manager::Interact(int p1, int p2, int round, int interact) {
 
             // Minus Score for using lifeline
             cout << "Deducting Score for using lifeline..." << endl;
-            player_1->minus_lifeline();
-            lifeline_count = player_1->get_lifeline_count();
+            player_1->lifeline.minus_lifeline();
+            lifeline_count = player_1->lifeline.get_lifeline_count();
 
           
         } else if (lifeline_count == 0) {
           cout << "Not enough lifeline count. Unable to use lifeline." << endl;
 					
         }
-				//allow user to choose select actions after using lifeline
+		//allow user to choose select actions after using lifeline
         p1_dec = player_1->make_decision(player_2->get_name(), round, interact);
 		cout << "---------------------------------------------" << endl;
 
       }
     } while (p1_dec != 1 && p1_dec != 2);    
 
-    this->players[p1]->set_self_decision(p1_dec, this->players[p2]->get_name(), round, interact);
-    this->players[p1]->set_decision(p2_dec, this->players[p2]->get_name(), round, interact);
-    cout << "p1 done";
-    this->players[p2]->set_self_decision(p2_dec, this->players[p1]->get_name(), round, interact);
-    this->players[p2]->set_decision(p1_dec, this->players[p1]->get_name(), round, interact);
+    // Storing information for User
+    this->players[p1]->set_self_decision(p1_dec, this->players[p2]->get_name(), round, interact);  // stores decision made by user
+    this->players[p1]->set_opponent_decision(p2_dec, this->players[p2]->get_name(), round, interact);  // stores decision made by Bot(AI)
+
+    // Storing information for Bot(AI)
+    this->players[p2]->set_self_decision(p2_dec, this->players[p1]->get_name(), round, interact);  // stores decision made by user
+    this->players[p2]->set_opponent_decision(p1_dec, this->players[p1]->get_name(), round, interact);  // stores decision made by Bot(AI)
 }
 
 
@@ -143,8 +144,7 @@ void Game_Manager::Game() {
       }
     }
 
-    cout << "number chosen: " << random_number
-         << ", player_type: " << player_type_chosen << endl;
+    cout << "number chosen: " << random_number << ", player_type: " << player_type_chosen << endl;
 
     switch (player_type_chosen) {
     case 0:
@@ -182,11 +182,11 @@ void Game_Manager::Game() {
     // ------------------------------------------------
     cout << "printing info... \n";
     Pname = this->players[i]->get_name();
-    // Pname = this->players[i].get_name();
+
     cout << "name... ";
     Pscore = this->players[i]->get_points();
     string Ptype = this->players[i]->get_playerType();
-    // Pscore = this->players[i].get_points();
+
     cout << "Player: " << Pname << "current score: " << Pscore << "Player type: " << Ptype << "...\n";
   }
 
@@ -223,8 +223,7 @@ void Game_Manager::Display_Results() {
     // tempstring = (char*)calloc(1000,sizeof(char));
     // sprintf(tempstring, "Player name: %s, Player score: %d",
     // this->players[i]->get_name(), this->players[i]->get_points());
-    cout << "Player name: " << this->players[i]->get_name()
-         << ", Player score: " << this->players[i]->get_points() << "\n";
+    cout << "Player name: " << this->players[i]->get_name() << ", Player score: " << this->players[i]->get_points() << "\n";
     // cout << "Player name: " << this->players[i].get_name() <<", Player score:
     // " << this->players[i].get_points();
   }
