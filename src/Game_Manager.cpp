@@ -96,7 +96,6 @@ void Game_Manager::Interact(int p1, int p2, int round, int interact) {
     this->players[p2]->set_self_decision(p2_dec, this->players[p1]->get_name(), round, interact);  // stores decision made by user
     this->players[p2]->set_opponent_decision(p1_dec, this->players[p1]->get_name(), round, interact);  // stores decision made by Bot(AI)
 
-    //this->players)[0]->print_decision_matrix((this->players)[0]->get_name());
 }
 
 
