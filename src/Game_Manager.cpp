@@ -132,10 +132,10 @@ void Game_Manager::Game() {
     }
 
     random_number = rand() % (sum);
-    cout << "sum: " << sum << endl;
-    for (int i = 0; i < this->player_types; i++) {
-      cout << "CRPT Cweight " << i << ": " << cumulative_weights[i] << endl;
-    }
+    //cout << "sum: " << sum << endl;
+    //for (int i = 0; i < this->player_types; i++) {
+      //cout << "CRPT Cweight " << i << ": " << cumulative_weights[i] << endl;
+    //}
 
     for (int i = 0; i < this->player_types; i++) {
       if (random_number < cumulative_weights[i]) {
@@ -144,7 +144,7 @@ void Game_Manager::Game() {
       }
     }
 
-    cout << "number chosen: " << random_number << ", player_type: " << player_type_chosen << endl;
+    //cout << "number chosen: " << random_number << ", player_type: " << player_type_chosen << endl;
 
     switch (player_type_chosen) {
     case 0:

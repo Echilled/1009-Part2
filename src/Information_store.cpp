@@ -90,7 +90,7 @@ void Information_store::set_opponent_decision(int decision, string playername, i
 	int playernumber = -1;
 	for (int i = 0; i < this->max_player_num; i++) {
 		if (!playername.compare(this->playernames[i])) {
-			cout << "found sd: " << this->playernames[i] << endl;
+			//cout << "found sd: " << this->playernames[i] << endl;
 			playernumber = i;
 			break;
 		}
@@ -100,12 +100,13 @@ void Information_store::set_opponent_decision(int decision, string playername, i
 			if (!this->playernames[i].compare("Empty")) {
 				this->playernames[i] = playername;
 				playernumber = i;
-				cout << "success sd: " << this->playernames[i] << endl;
+				//cout << "success sd: " << this->playernames[i] << endl;
+				break;
 			}
 		}
 	}
 	if (playernumber == -1) {
-		cout << "An error occurred when setting decision sd\n";
+		//cout << "An error occurred when setting decision sd\n";
 		return;
 	}
 	this->set_opponent_decision(decision, playernumber, round, interaction);
@@ -120,7 +121,7 @@ void Information_store::set_self_decision(int decision, string playername, int r
 	for (int i = 0; i < this->max_player_num; i++) {
 		if (!playername.compare(this->playernames[i])) {
 			playernumber = i;
-			cout << "found ssd: " << this->playernames[i] << endl;
+			//cout << "found ssd: " << this->playernames[i] << endl;
 			break;
 		}
 	}
@@ -129,12 +130,17 @@ void Information_store::set_self_decision(int decision, string playername, int r
 			if (!this->playernames[i].compare("Empty")) {
 				this->playernames[i] = playername;
 				playernumber = i;
-				cout << "success ssd: " << this->playernames[i] << endl;
+				//cout << "success ssd: " << this->playernames[i] << endl;
+				break;
 			}
 		}
 	}
 	if (playernumber == -1) {
-		cout << "An error occurred when setting decision ssd\n";
+		//cout << "An error occurred when setting decision ssd\n";
+		//for (int i = 0; i < this->max_player_num; i++) {
+			//cout << this->playernames[i] << " ";
+		//}
+		//cout << "\n";
 		return;
 	}
 
