@@ -5,7 +5,7 @@
 using namespace std;
 
 class Information_store {
-private:
+protected:
 	string name;
 	int points;
 	int decisions[100][100][100];
