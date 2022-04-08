@@ -8,6 +8,7 @@ Information_store::Information_store(int max_player_num, int max_round_num, int 
 	this->max_interaction_num = max_interact_num;
 	this->max_round_num = max_round_num;
 	this->points = 0;
+	this->name = this->randomise_name();
 
 	for (int i = 0; i < 100; i++) {
 		for (int j = 0; j < 100; j++) {
@@ -28,6 +29,36 @@ Information_store::Information_store(int max_player_num, int max_round_num, int 
 	}
 
 }
+
+Information_store::Information_store(int max_player_num, int max_round_num, int max_interact_num, string name) {
+	this->name = name;
+
+	this->max_player_num = max_player_num - 1;
+	this->max_interaction_num = max_interact_num;
+	this->max_round_num = max_round_num;
+	this->points = 0;
+	this->name = this->randomise_name();
+
+	for (int i = 0; i < 100; i++) {
+		for (int j = 0; j < 100; j++) {
+			for (int k= 0; k < 100; k++) {
+				this->decisions[i][j][k] = -1;
+			}
+		}
+	}
+	for (int i = 0; i < 100; i++) {
+		for (int j = 0; j < 100; j++) {
+			for (int k= 0; k < 100; k++) {
+				this->self_decisions[i][j][k] = -1;
+			}
+		}
+	}
+	for (int i = 0; i < 100; i++) {
+		this->playernames[i] = "Empty";
+	}
+
+}
+
 int Information_store::get_points() {
 	return this->points;
 }
@@ -175,4 +206,16 @@ int Information_store::get_max_round_num() {
 
 int Information_store::get_max_interaction_num() {
 	return this->max_interaction_num;
+}
+
+
+string Information_store::get_name() {
+	return this->name;
+}
+void Information_store::set_name(string name) {
+	this->name = name;
+}
+string Information_store::randomise_name() {
+	string a[] = {"Bob(AI)","Jack(AI)","Billy(AI)","Ginger(AI)","Gary(AI)"};
+	return a[rand()%5];
 }

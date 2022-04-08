@@ -9,7 +9,7 @@
 #include "Interactor.h"
 using namespace std;
 
-Player::Player(int player_num, int round_num, int interact_num,string player_type,  string name) : Information_store(player_num, round_num, interact_num), Interactor(name){
+Player::Player(int player_num, int round_num, int interact_num,string player_type,  string name) : Information_store(player_num, round_num, interact_num, name), Interactor(){
 }
 Player::Player(int player_num, int round_num, int interact_num, string player_type) : Information_store(player_num, round_num, interact_num), Interactor() {
 }

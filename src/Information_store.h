@@ -6,6 +6,7 @@ using namespace std;
 
 class Information_store {
 private:
+	string name;
 	int points;
 	int decisions[100][100][100];
 	int self_decisions[100][100][100];
@@ -18,7 +19,13 @@ private:
 
 public:
 	Information_store(int max_player_num, int max_round_num, int max_interact_num);
+	Information_store(int max_player_num, int max_round_num, int max_interact_num, string name);
+
 	int get_points();
+
+	string get_name();
+	void set_name(string name);
+	string randomise_name();
 
 	int get_max_player_num();
 	int get_max_round_num();
