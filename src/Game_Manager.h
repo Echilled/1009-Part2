@@ -9,8 +9,8 @@ class Player;
 
 class Game_Manager {
 private:
-	int max_rounds = 1; //number of rounds
-	int max_interact_rounds = 5; //number of times each individual interacts with per round
+	int max_rounds = 5; //number of rounds
+	int max_interact_rounds = 1; //number of times each individual interacts with per round
 
 	int player_types = 5; //number of player types
 	int number_of_players; //to be initialised during game

@@ -1,5 +1,4 @@
 #pragma comment( lib, "Winmm.lib" )
-
 #include "Game_Manager.h"
 #include <stdio.h>
 #include <windows.h>
@@ -11,7 +10,7 @@
 
 void play_music(int i) {
 	try {
-		//PlaySound(TEXT("IDR_WAVE1"), GetModuleHandle(NULL), SND_RESOURCE | SND_ASYNC);
+		PlaySound(TEXT("IDR_WAVE1"), GetModuleHandle(NULL), SND_RESOURCE | SND_ASYNC);
 	}
 	catch (...) {
 		cout << "Audio failed to play\n";
@@ -19,7 +18,7 @@ void play_music(int i) {
  }
 void play_music(float f) {
 	try {
-		//PlaySound(TEXT("IDR_WAVE2"), GetModuleHandle(NULL), SND_RESOURCE | SND_ASYNC);
+		PlaySound(TEXT("IDR_WAVE2"), GetModuleHandle(NULL), SND_RESOURCE | SND_ASYNC);
 	}
 	catch (...) {
 		cout << "Audio failed to play\n";

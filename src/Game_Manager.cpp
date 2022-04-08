@@ -20,7 +20,7 @@ void Game_Manager::Interact(int p1, int p2, int round, int interact) {
 
   int lifeline_count = player_1->lifeline.get_lifeline_count();
   cout << "===================================================" << endl;
-  cout << "player: " << player_1->get_name() << " is interacting with " << player_2->get_name() << endl;
+  cout << "Interaction "<< round+1 << "/5: " << player_1->get_name() << " with " << player_2->get_name() << endl;
 
   
     int p1_dec = player_1->make_decision(player_2->get_name(), round, interact);
@@ -86,7 +86,7 @@ void Game_Manager::Interact(int p1, int p2, int round, int interact) {
 		cout << "---------------------------------------------" << endl;
 
       }
-    } while (p1_dec != 1 && p1_dec != 2);    
+    } while (p1_dec != 1 && p1_dec != 2);  
 
     // Storing information for User
     this->players[p1]->set_self_decision(p1_dec, this->players[p2]->get_name(), round, interact);  // stores decision made by user
@@ -95,6 +95,8 @@ void Game_Manager::Interact(int p1, int p2, int round, int interact) {
     // Storing information for Bot(AI)
     this->players[p2]->set_self_decision(p2_dec, this->players[p1]->get_name(), round, interact);  // stores decision made by user
     this->players[p2]->set_opponent_decision(p1_dec, this->players[p1]->get_name(), round, interact);  // stores decision made by Bot(AI)
+
+    //this->players)[0]->print_decision_matrix((this->players)[0]->get_name());
 }
 
 
@@ -198,7 +200,7 @@ void Game_Manager::Game() {
 
   for (int round = 0; round < this->max_rounds; round++) {
     cout << "===================================================" << endl;
-    cout << "Round: " << round+1 << endl;
+    cout << "Beginning Interactions, Round: " << round+1 << endl;
     for (int i = 0; i < this->number_of_players; i++) {
       for (int j = i; j < this->number_of_players; j++) {
         if (i != j) {
@@ -207,13 +209,9 @@ void Game_Manager::Game() {
           }
         }
       }
-      scoreboard.UpdateScore(
-          this->players[i]->get_name(),
-          this->players[i]->get_points()); // Accessing private variables as
-                                           // game manager is a friend
+      scoreboard.UpdateScore(this->players[i]->get_name(), this->players[i]->get_points()); // Accessing private variables as game manager is a friend
     }
   }
-  (this->players)[0]->print_decision_matrix((this->players)[0]->get_name());
   cout << scoreboard;
 }
 

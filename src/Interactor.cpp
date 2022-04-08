@@ -1,6 +1,8 @@
 #include <string>
 #include <stdio.h>
 #include <iostream>
+#include <fstream>
+#include <vector>
 #include "Interactor.h"
 
 Interactor::Interactor() {
