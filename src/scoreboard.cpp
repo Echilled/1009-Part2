@@ -11,8 +11,8 @@ using namespace std;
 
 
 scoreboard::scoreboard(){
-	cout << "This is the scoreboard constructor"<< endl;
-}
+	// cout << "This is the scoreboard constructor"<< endl;
+	}
 
 
 

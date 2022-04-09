@@ -1,4 +1,9 @@
-Bill
-Richard
-Fluffybutthurtbanana
-Lucifer
+Bill(AI)
+Richard(AI)
+FlufBanan(AI)
+Lucifer(AI)
+Bob(AI)
+Jack(AI)
+Billy(AI)
+Ginger(AI)
+Gary(AI)

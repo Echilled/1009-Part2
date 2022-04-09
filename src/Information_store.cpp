@@ -1,14 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <iostream>
+#include <fstream>
 
 #include "Information_store.h"
+
 
 Information_store::Information_store(int max_player_num, int max_round_num, int max_interact_num) {
 	this->max_player_num = max_player_num - 1;
 	this->max_interaction_num = max_interact_num;
 	this->max_round_num = max_round_num;
 	this->points = 0;
-	this->name = this->randomise_name();
 
 	for (int i = 0; i < 100; i++) {
 		for (int j = 0; j < 100; j++) {
@@ -37,7 +39,7 @@ Information_store::Information_store(int max_player_num, int max_round_num, int 
 	this->max_interaction_num = max_interact_num;
 	this->max_round_num = max_round_num;
 	this->points = 0;
-	this->name = this->randomise_name();
+	// this->name = this->randomise_name();
 
 	for (int i = 0; i < 100; i++) {
 		for (int j = 0; j < 100; j++) {
@@ -215,7 +217,53 @@ string Information_store::get_name() {
 void Information_store::set_name(string name) {
 	this->name = name;
 }
+
+
+const string NAME_FILE="textfiles/names.txt";
+
+string* Information_store::read_names_from_file(){
+	ifstream myFile;
+	static string names[100]; // holds the 100 names in the file.
+	// 
+	try {
+  myFile.open(NAME_FILE);
+	int a = 0;
+	string tmpString;
+	 if(myFile.is_open()){
+    	while(getline(myFile, names[a])){ //read data from file object and put it into string.
+				a++;
+      }
+		}else{
+		 throw "File not opened.";
+		} 
+}
+catch (...) {
+  cout<< "Error reading "<<NAME_FILE<<" file."<<endl;
+}
+
+if(myFile.is_open()){ // check if file is still open and close it if it is.
+		myFile.close();
+	}
+	
+	return names;
+}
+
+
 string Information_store::randomise_name() {
 	string a[] = {"Bob(AI)","Jack(AI)","Billy(AI)","Ginger(AI)","Gary(AI)"};
 	return a[rand()%5];
+
+	// string randomNames[20];// holds the randomly generated names FROM the file.
+	// int randNum;
+
+	// for (int i = 0; i < 20; i++) { // makes this program iterate 20 times; giving you 20 random names.
+	// randNum = rand() % 1000 + 1; // gets a random number between 1, and 1000.
+	// randomNames[i] = names[randNum]; 
+	// }
+	// for (int i = 0; i < 20; i++) {
+	// cout << randomNames[i] << endl; // outputs all 20 names at once.
+	// }
+
+ //  return names[rand()%20];
 }
+

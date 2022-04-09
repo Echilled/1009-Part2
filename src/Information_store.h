@@ -23,14 +23,18 @@ public:
 
 	int get_points();
 
+  // Names 
 	string get_name();
 	void set_name(string name);
 	string randomise_name();
+  static string* read_names_from_file();
 
+  // General
 	int get_max_player_num();
 	int get_max_round_num();
 	int get_max_interaction_num();
 
+  // Player & AI Decisions
 	int get_decision(int player, int round, int interactions);
 	int get_decision(string playername, int round, int interactions);
 	int get_self_decision(int player, int round, int interactions);
