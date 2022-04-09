@@ -14,7 +14,7 @@ private:
 
 	int player_types = 5; //number of player types
 	int number_of_players; //to be initialised during game
-	int weights[5] = { 1,1,1,1,1 };//must be same length as described by player types
+	int weights[5] = { 0,0,0,1,0 };//must be same length as described by player types
 	//Player** players; //to be initialised during game
 	Player* players[10];
 

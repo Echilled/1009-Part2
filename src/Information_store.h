@@ -27,7 +27,7 @@ public:
 	string get_name();
 	void set_name(string name);
 	string randomise_name();
-  static string* read_names_from_file();
+    static string* read_names_from_file();
 
   // General
 	int get_max_player_num();

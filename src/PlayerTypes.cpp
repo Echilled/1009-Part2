@@ -75,10 +75,11 @@ public:
 	  if (interaction > 0) {
 		  return this->get_decision(playername, round, interaction - 1);
 	  } else if (round > 0) {
-		  return this->get_decision(playername, round, this->get_max_interaction_num() - 1);
+		  return this->get_decision(playername, round-1, this->get_max_interaction_num() - 1);
 	  } else {
 		  return COOPERATE;
 	  }
+	  return COOPERATE;
   }
 };
 
@@ -109,6 +110,7 @@ public:
 
 		  }
 	  }
+	  return COOPERATE;
   }
 };
 

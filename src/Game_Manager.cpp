@@ -52,6 +52,7 @@ void Game_Manager::Interact(int p1, int p2, int round, int interact) {
         p2_dec = 2;
         cout << "---------------------------------------------" << endl;
 
+
         // Minus Score for using lifeline
         cout << "Deducting Score for using lifeline..." << endl;
         player_1->lifeline.minus_lifeline();
@@ -94,22 +95,23 @@ void Game_Manager::Interact(int p1, int p2, int round, int interact) {
     }
     cout << "---------------------------------------------" << endl;
 
+
   } while (p1_dec != 1 && p1_dec != 2);
 
   // Storing information for User
-  this->players[p1]->set_self_decision(
-      p1_dec, this->players[p2]->get_name(), round,
+  player_1->set_self_decision(
+      p1_dec, player_2->get_name(), round,
       interact); // stores decision made by user
-  this->players[p1]->set_opponent_decision(
-      p2_dec, this->players[p2]->get_name(), round,
+  player_1->set_opponent_decision(
+      p2_dec, player_2->get_name(), round,
       interact); // stores decision made by Bot(AI)
 
   // Storing information for Bot(AI)
-  this->players[p2]->set_self_decision(
-      p2_dec, this->players[p1]->get_name(), round,
+  player_2->set_self_decision(
+      p2_dec, player_1->get_name(), round,
       interact); // stores decision made by user
-  this->players[p2]->set_opponent_decision(
-      p1_dec, this->players[p1]->get_name(), round,
+  player_2->set_opponent_decision(
+      p1_dec, player_1->get_name(), round,
       interact); // stores decision made by Bot(AI)
 }
 

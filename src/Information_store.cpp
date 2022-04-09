@@ -39,6 +39,7 @@ Information_store::Information_store(int max_player_num, int max_round_num, int 
 	this->max_interaction_num = max_interact_num;
 	this->max_round_num = max_round_num;
 	this->points = 0;
+	this->name = name;
 	// this->name = this->randomise_name();
 
 	for (int i = 0; i < 100; i++) {
@@ -226,22 +227,23 @@ string* Information_store::read_names_from_file(){
 	static string names[100]; // holds the 100 names in the file.
 	// 
 	try {
-  myFile.open(NAME_FILE);
-	int a = 0;
-	string tmpString;
-	 if(myFile.is_open()){
-    	while(getline(myFile, names[a])){ //read data from file object and put it into string.
-				a++;
-      }
+		myFile.open(NAME_FILE);
+		cout << "open";
+		int a = 0;
+		string tmpString;
+		 if(myFile.is_open()){
+			while(getline(myFile, names[a])){ //read data from file object and put it into string.
+					a++;
+			}
 		}else{
-		 throw "File not opened.";
+			throw "File not opened.";
 		} 
-}
-catch (...) {
-  cout<< "Error reading "<<NAME_FILE<<" file."<<endl;
-}
+	}
+	catch (...) {
+	  cout<< "Error reading "<<NAME_FILE<<" file."<<endl;
+	}
 
-if(myFile.is_open()){ // check if file is still open and close it if it is.
+	if(myFile.is_open()){ // check if file is still open and close it if it is.
 		myFile.close();
 	}
 	
