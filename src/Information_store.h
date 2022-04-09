@@ -23,18 +23,17 @@ public:
 
 	int get_points();
 
-  // Names 
+	// Names 
 	string get_name();
 	void set_name(string name);
-	string randomise_name();
-    static string* read_names_from_file();
+	static string* read_names_from_file(int);
 
-  // General
+	// General
 	int get_max_player_num();
 	int get_max_round_num();
 	int get_max_interaction_num();
 
-  // Player & AI Decisions
+	// Player & AI Decisions
 	int get_decision(int player, int round, int interactions);
 	int get_decision(string playername, int round, int interactions);
 	int get_self_decision(int player, int round, int interactions);
@@ -49,4 +48,6 @@ public:
 	void set_self_decision(int decision, string playername, int round, int interaction);
 
 	void print_decision_matrix(string name);
+	static bool in_array(string string_to_check, string* ptr_to_array);
+
 };

@@ -4,6 +4,7 @@
 #include <fstream>
 
 #include "Information_store.h"
+#include <algorithm>
 
 
 Information_store::Information_store(int max_player_num, int max_round_num, int max_interact_num) {
@@ -220,52 +221,80 @@ void Information_store::set_name(string name) {
 }
 
 
-const string NAME_FILE="textfiles/names.txt";
+//const string NAME_FILE = "textfiles/names.txt";
+const string NAME_FILE = "C:\\Users\\Jun Rui\\Desktop\\hee hoo\\src\\textfiles\\names.txt";
+const int MAX = 100;
+const int MAX_RAND = 10;
 
-string* Information_store::read_names_from_file(){
+
+string* Information_store::read_names_from_file(int num_of_AI) {
 	ifstream myFile;
-	static string names[100]; // holds the 100 names in the file.
-	// 
+	static string names[MAX]; // holds the 100 names in the file.
+	static string rand_names[MAX_RAND]; // contains the random names to be return back
+
+	int a = 0;
+
 	try {
 		myFile.open(NAME_FILE);
-		cout << "open";
-		int a = 0;
+
 		string tmpString;
-		 if(myFile.is_open()){
-			while(getline(myFile, names[a])){ //read data from file object and put it into string.
-					a++;
+		if (myFile.is_open()) {
+			while (getline(
+				myFile,
+				names[a])) { // read data from file object and put it into string.
+				a++;
 			}
-		}else{
+		}
+		else {
 			throw "File not opened.";
-		} 
+		}
 	}
 	catch (...) {
-	  cout<< "Error reading "<<NAME_FILE<<" file."<<endl;
+		cout << "Error reading " << NAME_FILE << " file." << endl;
 	}
 
-	if(myFile.is_open()){ // check if file is still open and close it if it is.
+	if (myFile.is_open()) { // check if file is still open and close it if it is.
 		myFile.close();
 	}
-	
-	return names;
+
+
+	int assigned_count = 0;
+	//ensure all AI needed are assigned a name
+	while (assigned_count < num_of_AI) {
+		string tmp_name = names[rand() % a];
+
+		//checks if the AI name already exists in the Array
+		if (in_array(tmp_name, rand_names) == 0) {
+			//if not found in array, assigned the name
+			rand_names[assigned_count] = tmp_name;
+			assigned_count++;
+		}
+		else {
+			//get a new random name to try again
+			tmp_name = names[rand() % (a - 1)];
+		}
+	}
+
+	for (int i = 0; i < num_of_AI; i++) {
+		cout << "NAMES: " << rand_names[i] << endl;
+	}
+
+	return rand_names;
 }
 
 
-string Information_store::randomise_name() {
-	string a[] = {"Bob(AI)","Jack(AI)","Billy(AI)","Ginger(AI)","Gary(AI)"};
-	return a[rand()%5];
 
-	// string randomNames[20];// holds the randomly generated names FROM the file.
-	// int randNum;
+bool Information_store::in_array(string string_to_check, string* ptr_to_array) {
+	bool found = false;
 
-	// for (int i = 0; i < 20; i++) { // makes this program iterate 20 times; giving you 20 random names.
-	// randNum = rand() % 1000 + 1; // gets a random number between 1, and 1000.
-	// randomNames[i] = names[randNum]; 
-	// }
-	// for (int i = 0; i < 20; i++) {
-	// cout << randomNames[i] << endl; // outputs all 20 names at once.
-	// }
+	for (int i = 0; i < MAX_RAND; ++i) {
 
- //  return names[rand()%20];
+		if ((ptr_to_array[i]).compare(string_to_check) == 0) {
+			found = true;
+			return found;
+		}
+	}
+	return found;
+
 }
 
