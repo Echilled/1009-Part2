@@ -221,8 +221,8 @@ void Information_store::set_name(string name) {
 }
 
 
-const string NAME_FILE = "textfiles/names.txt";
-//const string NAME_FILE = "C:\\Users\\Jun Rui\\Desktop\\hee hoo\\src\\textfiles\\names.txt";
+//const string NAME_FILE = "textfiles/names.txt";
+const string NAME_FILE = "C:\\Users\\Jun Rui\\Desktop\\hee hoo\\src\\textfiles\\names.txt";
 const int MAX = 100;
 const int MAX_RAND = 10;
 

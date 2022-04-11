@@ -22,6 +22,7 @@ public:
 	map<string, int> getScoreMap();
 	void initScoreMap(string, int);
 	void UpdateScore(string, int);
+	void displayScoreMap();
 	friend ostream& operator<<(ostream& out, const scoreboard& scoreboard);
 
 };
