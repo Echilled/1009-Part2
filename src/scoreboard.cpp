@@ -32,13 +32,6 @@ void scoreboard::UpdateScore(string playername, int player_points) {
 
 
 
-void scoreboard::displayScoreMap() {
-	map<string, int>::iterator itr1;
-	cout << "Score map:" << endl;
-	for (itr1 = this->score_map.begin(); itr1 != this->score_map.end(); ++itr1) {
-		cout << '\t' << itr1->first << '\t' << itr1->second << '\n';
-	}
-}
 
 
 struct comp {
