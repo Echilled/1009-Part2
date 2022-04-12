@@ -77,7 +77,7 @@ string* Interactor::read_conversations_from_file(int num_of_AI) {
 	}
 
 	for (int i = 0; i < num_of_AI; i++) {
-		cout << "NAMES: " << rand_conversations[i] << endl;
+		cout << "CONVERSATIONS: " << rand_conversations[i] << endl;
 	}
 
 	return rand_conversations;

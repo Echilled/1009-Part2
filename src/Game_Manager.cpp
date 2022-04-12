@@ -22,6 +22,13 @@ void Game_Manager::Interact(int p1, int p2, int round, int interact) {
     cout << "Interaction " << round + 1 << "/5: " << player_1->get_name()
         << " with " << player_2->get_name() << endl;
 
+    if (!player_1->get_playerType().compare("User")) {
+    	cout << player_2->get_name() << ": " << player_2->get_conversation() << endl;
+    }
+    if (!player_2->get_playerType().compare("User")) {
+    	cout << player_1->get_name() << ": " << player_1->get_conversation() << endl;
+    }
+
     int p1_dec = player_1->make_decision(player_2->get_name(), round, interact);
     int p2_dec = player_2->make_decision(player_1->get_name(), round, interact);
 
@@ -131,6 +138,9 @@ void Game_Manager::Game() {
     string* ptr_to_namearray;
     ptr_to_namearray = Information_store::read_names_from_file(this->number_of_players);
 
+    string* ptr_to_conversation_array;
+    ptr_to_conversation_array = Interactor::read_conversations_from_file(this->number_of_players);
+
     cout << "Game has started\n";
     cout << "What is your name: ";
     cin >> UserName;
@@ -192,6 +202,8 @@ void Game_Manager::Game() {
         }
 
         this->players[i]->set_name(ptr_to_namearray[i]);
+        this->players[i]->set_conversation(ptr_to_conversation_array[i]);
+
         cout << "------------------------" << endl;
         cout << "player chosen: " << (this->players[i])->get_name() << "\n\n\n";
 
