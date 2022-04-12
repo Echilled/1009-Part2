@@ -5,7 +5,7 @@
 using namespace std;
 
 class Information_store {
-protected:
+private:
 	string name;
 	int points;
 	int decisions[100][100][100];
@@ -49,5 +49,4 @@ public:
 
 	void print_decision_matrix(string name);
 	static bool in_array(string string_to_check, string* ptr_to_array);
-
 };
