@@ -59,7 +59,7 @@ int main() {
     cout << "Starting game... Please wait.\n";
     // std::thread t2([](auto var) { play_music(var); }, 1.0f);
     GM.Game();
-    GM.Display_Results();
+    //GM.Display_Results();
 
     cin >> PH;
     // t1.join();
