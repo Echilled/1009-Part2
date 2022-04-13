@@ -120,13 +120,13 @@ public:
        string name)
       : Player(player_num, round_num, interact_num, player_type, name){
         this->player_type = player_type;
-        this->lifeline.lifeline_count = lifeline.lifeline_count;
+        this->lifeline.set_lifeline_count(lifeline.get_lifeline_count());
 
       }
   User(int player_num, int round_num, int interact_num, string player_type,int lifeline_count)
       : Player(player_num, round_num, interact_num, player_type){
         this->player_type = player_type;
-        this->lifeline.lifeline_count = lifeline_count;
+        this->lifeline.set_lifeline_count(lifeline_count);
 
       }
 

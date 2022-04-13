@@ -6,6 +6,7 @@ using namespace std;
 
 Lifeline::Lifeline() {
     this->lifeline_count = 2;
+    this->lifeline_selection = -1;
 }
 int Lifeline::get_lifeline_count() {
     return lifeline_count;
@@ -15,6 +16,10 @@ void Lifeline::set_lifeline_selection(int selection) {
 }
 int Lifeline::get_lifeline_selection() {
 	return this->lifeline_selection;
+}
+
+void Lifeline::set_lifeline_count(int lifeline_count) {
+	this->lifeline_count = lifeline_count;
 }
 
 void Lifeline::minus_lifeline() {
