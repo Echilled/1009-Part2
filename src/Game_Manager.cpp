@@ -148,7 +148,7 @@ void Game_Manager::Game() {
         this->max_interact_rounds, "User", UserName);
 
     for (int i = 1; i < this->number_of_players; i++) {
-        cout << "choosing player " << i << "...\n";
+        //cout << "choosing player " << i << "...\n";
 
         //---------------------------------------
         int cumulative_weights[100];
@@ -204,19 +204,19 @@ void Game_Manager::Game() {
         this->players[i]->set_name(ptr_to_namearray[i]);
         this->players[i]->set_conversation(ptr_to_conversation_array[i]);
 
-        cout << "------------------------" << endl;
-        cout << "player chosen: " << (this->players[i])->get_name() << "\n\n\n";
+        //cout << "------------------------" << endl;
+        //cout << "player chosen: " << (this->players[i])->get_name() << "\n\n\n";
 
-        cout << "printing info... \n";
-        Pname = this->players[i]->get_name();
+        //cout << "printing info... \n";
+        //Pname = this->players[i]->get_name();
 
         // cout << "name... ";
-        Pscore = this->players[i]->get_points();
-        string Ptype = this->players[i]->get_playerType();
+        //Pscore = this->players[i]->get_points();
+        //string Ptype = this->players[i]->get_playerType();
 
-        cout << "Player: " << Pname << "\nCurrent score: " << Pscore
-            << " \nPlayer type: " << Ptype << "...\n";
-        cout << "------------------------" << endl;
+        //cout << "Player: " << Pname << "\nCurrent score: " << Pscore
+            //<< " \nPlayer type: " << Ptype << "...\n";
+        //cout << "------------------------" << endl;
     }
 
     // Intialising the scoreboard

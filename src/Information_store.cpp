@@ -275,7 +275,7 @@ string* Information_store::read_names_from_file(int num_of_AI) {
 	}
 
 	for (int i = 0; i < num_of_AI; i++) {
-		cout << "NAMES: " << rand_names[i] << endl;
+		//cout << "NAMES: " << rand_names[i] << endl;
 	}
 
 	return rand_names;
